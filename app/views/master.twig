@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/master.css">
+    <title>Trash Shop - {{ title }}</title>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Trash Shop</a>
+            <form class="d-flex">
+                <a class="nav-item text-light text-decoration-none" href="/login">Logar</a>
+            </form>
+        </div>
+    </nav>
+    
+    <div class="container container-fluid py-1 mt-3">
+        <h3>{{ title }}</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {% for page in breadcrumb %}
+                    <li class="breadcrumb-item text-secondary">{{ page }}</li>
+                {% endfor %}
+            </ol>
+        </nav>
+        <hr>
+        {% block content %}{% endblock %}
+    </div>
+    <script src="/assets/js/bootstrap/bootstrap.js"></script>
+</body>
+</html>

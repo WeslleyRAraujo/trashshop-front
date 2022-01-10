@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.css">
     <link rel="stylesheet" href="/assets/css/master.css">
+    {% for asset in css %}
+        <link rel="stylesheet" href="/assets/css/{{asset}}">
+    {% endfor %}
     <title>Trash Shop - {{ title }}</title>
 </head>
 <body class="bg-light">

@@ -7,8 +7,9 @@ use Afterimage\Router;
 
 $route = new Router();
 
-$route->get('/', 'App\Controller\HomeController:index');
-$route->get('/message', 'App\Controller\HomeController:json');
+$route->get('/', 'App\Controller\ShopController:index');
+
+$route->get('/shop', 'App\Controller\ShopController:productDetail');
 
 $route->get('/login', 'App\Controller\LoginController:index');
 

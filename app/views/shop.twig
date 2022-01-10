@@ -1,0 +1,31 @@
+{% extends 'master.twig' %}
+
+{% block content %}
+
+{% if notFound == true %}
+
+    <h3> Produto não encontrado : (</h3>
+    <a href="/" class="text-decoration-none">Voltar</a>
+
+{% endif %}
+
+{% if notFound == false %}
+    {% for detail in product %}
+        <div class="card">
+            <h5 class="card-header">{{detail.nameproduct}}</h5>
+            <div class="card-body">
+                <p class="card-text">Uma descrição sobre o produto...</p>
+                <br>
+                <p class="text-primary fw-bold"><span class="text-secondary fw-normal">Preço: </span>R$ {{detail.price|number_format(2, ',', '.')}}</p>
+                <hr>
+                <a class="btn btn-primary">Adicionar ao Carrinho</a>
+                <button type="button" class="btn btn-info">+</button>
+                <br>
+                <br>
+                <p class="text-secondary">Quantidade: 1</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

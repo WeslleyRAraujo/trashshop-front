@@ -29,7 +29,7 @@ class ShopController
     {
         $product = new Product();
         
-        $result = $product->detail(Http::getResponseData()['prod'] ?? 0);
+        $result = $product->detail(intval(@Http::getResponseData()['prod']) ? Http::getResponseData()['prod'] : 0);
 
         $notFound = false;
 
@@ -43,5 +43,11 @@ class ShopController
             'notFound' => $notFound,
             'product' => $result
         ]);
+    }
+
+    public function test()
+    {
+        $cep = \App\Classes\ViaCEP::search('04104040');
+        print_r(json_decode($cep, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
     }
 }

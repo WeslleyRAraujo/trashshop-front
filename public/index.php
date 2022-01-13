@@ -14,3 +14,5 @@ $route->get('/shop', 'App\Controller\ShopController:productDetail');
 $route->get('/login', 'App\Controller\LoginController:index');
 
 $route->post('/login/auth', 'App\Controller\LoginController:auth');
+
+$route->get('/test', 'App\Controller\ShopController:test');

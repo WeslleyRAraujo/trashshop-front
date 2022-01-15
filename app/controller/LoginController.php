@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Classes\TrashShop;
+use App\Classes\Log;
 use Afterimage\Session;
 
 class LoginController
@@ -43,6 +44,11 @@ class LoginController
         if(isset($result['error'])) {
             header("location: /login"); exit();
         }
+
+        if(is_null($result)) {
+            Log::write("Não foi possível realizar o login, erro de conexão com a API, endpoint: {$_ENV['TRSP_LOGIN']}");
+            header("location: /login"); exit();
+        }
         
         $jwt_return = json_decode(base64_decode(str_replace('_', '/', str_replace('-','+',explode('.', $result['data']['token'])[1]))), true);
 
@@ -52,6 +58,7 @@ class LoginController
         ]);
 
         header('location:/'); exit();
+        
     }
 
     public function exit()

@@ -15,7 +15,7 @@
     {% for product in products %}
       <div class="product-card col">
         <div class="product p-3 border bg-light">
-          <a href="/shop?prod={{product.idproduct}}" class="link-product link-danger text-decoration-none stretched-link">{{product.nameproduct}}</a>
+          <a href="/shop?prod={{product.code}}" class="link-product link-danger text-decoration-none stretched-link">{{product.name}}</a>
           <div class="product-price">
           |>
           <small class="text-success fw-bold">R$ {{product.price|number_format(2,',', '.')}}</small>

@@ -80,4 +80,9 @@ class Session
             unset($_SESSION[$key]);
         }
     }
+
+    public static function unset($session)
+    {
+        unset($_SESSION[$session]);
+    }
 }

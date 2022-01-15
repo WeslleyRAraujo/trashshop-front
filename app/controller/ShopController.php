@@ -30,7 +30,7 @@ class ShopController
         ]);
     }
 
-    public function productDetail()
+    public function detail()
     {
         if(!isset($_SESSION['session_logged'])) {
             header('location: /login'); exit();
@@ -38,7 +38,7 @@ class ShopController
         
         $product = new Product();
         
-        $result = $product->detail(intval(@Http::getResponseData()['prod']) ? Http::getResponseData()['prod'] : 0);
+        $result = $product->detail(@$_GET['prod'] ? $_GET['prod'] : 0);
 
         $notFound = false;
 
@@ -52,12 +52,5 @@ class ShopController
             'notFound' => $notFound,
             'product' => $result
         ]);
-    }
-
-    public function test()
-    {
-        $res = new \App\Classes\TrashShopAPI();
-
-        $res->login("carl@outlook.com", "123213");
     }
 }

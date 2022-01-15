@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Controller;
-use App\Classes\TrashShop;
 use App\Classes\Log;
+use App\Classes\User;
 use Afterimage\Session;
 
 class LoginController
@@ -33,32 +33,31 @@ class LoginController
         $password = $_POST['password'];
 
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $_SESSION['error_login'] = 'Formato de email inválido.';
             header("location: /login"); exit();
         }
 
-        $result = TrashShop::request('TRSP_LOGIN', [
-            'email' => $email,
-            'password' => $password
-        ]);
+        $result = User::login($email, $password);
 
         if(isset($result['error'])) {
+            $_SESSION['error_login'] = 'Email ou senha inválidos.';
             header("location: /login"); exit();
         }
 
         if(is_null($result)) {
-            Log::write("Não foi possível realizar o login, erro de conexão com a API, endpoint: {$_ENV['TRSP_LOGIN']}");
+            Log::write("Não foi possível realizar o login, erro de conexão com a API, endpoint: 'https://trash.gigalixirapp.com/api/v1/login';");
+            $_SESSION['error_login'] = 'Ops, houve um erro de conexão com o servidor :(';
             header("location: /login"); exit();
         }
         
         $jwt_return = json_decode(base64_decode(str_replace('_', '/', str_replace('-','+',explode('.', $result['data']['token'])[1]))), true);
 
         Session::set([
-            'session_email' => $jwt_return['sub'],
+            'session_id' => $jwt_return['sub'],
+            'session_token' =>  $result['data']['token'],
             'session_logged' => true
         ]);
-
         header('location:/'); exit();
-        
     }
 
     public function exit()

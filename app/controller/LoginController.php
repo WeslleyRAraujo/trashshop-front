@@ -63,6 +63,6 @@ class LoginController
     public function exit()
     {
         Session::kill();
-        header("location:/"); exit();
+        header("location: /login"); exit();
     }
 }

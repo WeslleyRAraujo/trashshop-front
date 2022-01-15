@@ -16,12 +16,12 @@ class ShopController
 {
     public function index()
     {
-        $product = new Product();
-        $products = $product->listAll();
-
         if(!isset($_SESSION['session_logged'])) {
             header('location: /login'); exit();
         }
+
+        $product = new Product();
+        $products = $product->listAll();
 
         return view('home', [
             'title' => 'Produtos',

@@ -32,6 +32,10 @@ class ShopController
 
     public function productDetail()
     {
+        if(!isset($_SESSION['session_logged'])) {
+            header('location: /login'); exit();
+        }
+        
         $product = new Product();
         
         $result = $product->detail(intval(@Http::getResponseData()['prod']) ? Http::getResponseData()['prod'] : 0);

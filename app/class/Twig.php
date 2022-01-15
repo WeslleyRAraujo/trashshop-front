@@ -26,7 +26,13 @@ class Twig
     {
         $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views/');
         $twig = new \Twig\Environment($loader);
-        $twig->addGlobal('session', $_SESSION);
+
+        if($_ENV['TWIG_GLOBALS'] = 'enabled') {
+            $twig->addGlobal('session', $_SESSION);
+            $twig->addGlobal('post', $_POST);
+            $twig->addGlobal('get', $_GET);
+        }
+
         if(is_file(__DIR__ . "/../views/{$view}.twig")) {
             return $twig->display("{$view}.twig", $args);
         } else {

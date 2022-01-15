@@ -7,8 +7,10 @@
 namespace App\Controller;
 
 use App\Database;
-use App\Classes\Product; 
+use App\Classes\Product;
+use App\Classes\TrashShopAPI;
 use Afterimage\Http;
+use Afterimage\Session;
 
 class ShopController
 {
@@ -17,9 +19,12 @@ class ShopController
         $product = new Product();
         $products = $product->listAll();
 
+        if(!isset($_SESSION['session_logged'])) {
+            header('location: /login'); exit();
+        }
+
         return view('home', [
             'title' => 'Produtos',
-            'css' => ['home.css'],
             'breadcrumb' => ['Trash Shop', 'Ínicio'],
             'products' => $products
         ]);
@@ -47,7 +52,8 @@ class ShopController
 
     public function test()
     {
-        $cep = \App\Classes\ViaCEP::search('04104040');
-        print_r(json_decode($cep, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        $res = new \App\Classes\TrashShopAPI();
+
+        $res->login("carl@outlook.com", "123213");
     }
 }

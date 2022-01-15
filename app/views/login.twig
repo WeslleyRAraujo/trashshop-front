@@ -1,5 +1,11 @@
 {% extends 'master.twig' %}
 
+{% block head %}
+
+<link href="/assets/css/login.css" rel="stylesheet">
+
+{% endblock %}
+
 {% block content %}
 <div class="container align-middle">
     <div class="row">
@@ -7,7 +13,7 @@
         <div class="card border-0 shadow shadow-lg rounded-3 my-5 align-middle">
           <div class="card-body p-4 p-sm-5">
             <h5 class="card-title text-center mb-5">TRASH SHOP</h5>
-            <form method="POST" action="/login">
+            <form method="POST" action="/login/auth">
               <div class="form-group mb-4">
                   <label>Login</label>
                   <input type="text" class="form-control" id="floatingInput" placeholder="usuario" name="login" />

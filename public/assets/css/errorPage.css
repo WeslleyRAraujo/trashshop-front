@@ -1,11 +1,11 @@
 html {
     font-family: 'Raleway', sans-serif;
-    background-color: #495057;
+    background-color: #cecece;
     color: #F8F9FA;
 }
 
 .central {
-    color: #F8F9FA;
+    color: #212529;
     margin-top: 25vh;
     margin-bottom: 25vh;
     text-align: center;
@@ -17,13 +17,13 @@ html {
 }
 
 #message {
-    color: #F8F9FA;
+    color: #212529;
     font-size: 24px;
 }
 
 #link {
     text-decoration: none;
-    color: #F8F9FA;
+    color: #212529;
     transition: 0.3s;
     border-bottom: 2px solid #222;
 }

@@ -1,9 +1,7 @@
 {% extends 'master.twig' %}
 
-{% block head %}
-
-<link href="/assets/css/login.css" rel="stylesheet">
-
+{% block scripts %}
+<script src="/assets/js/app/login.js">
 {% endblock %}
 
 {% block content %}
@@ -12,27 +10,20 @@
       <div class="col-sm-4 mx-auto">
         <div class="card border-0 shadow shadow-lg rounded-3 my-5 align-middle">
           <div class="card-body pt-2 pb-4 pl-4 pr-4 p-sm-5">
-            <img class="mx-auto d-block" src="/assets/img/logo.png" alt="" width="250" height="250">
+            <img class="mx-auto d-block" src="/assets/img/logo.png" alt="" width="250" height="125">
             <form method="POST" action="/login/auth">
               <div class="form-group mb-4">
-                  <label>Login</label>
-                  <input type="email" class="form-control" id="floatingInput" placeholder="usuario" name="login" required/>
+                  <label for="login">Login</label>
+                  <input type="email" class="form-control" id="login" placeholder="usuario" name="login" required/>
               </div>
               <div class="form-group mb-3">
-                  <label for="floatingPassword">Senha</label>
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="1234..." name="password" value="" required>
+                  <label for="password">Senha</label>
+                  <input type="password" class="form-control" id="password" placeholder="1234..." name="password" value="" required>
               </div>
               <div>
-                <small class="text-danger">
-                  <?php 
-                    isset($_SESSION['erro_login'])? $erro = $_SESSION['erro_login']  : $erro = "";
-                    echo $erro;
-                    session_destroy();
-                  ?>
-                </small>
               </div>
               <div class="d-grid pb-5">
-                <button class="btn btn-dark fw-bold" type="submit">Entrar</button>
+                <button class="btn btn-dark fw-bold" type="submit" id="login-button">Entrar</button>
               </div>
             </form>
           </div>

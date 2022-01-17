@@ -15,4 +15,8 @@ class UserController
             'breadcrumb' => ['Trash Shop', 'Perfil']
         ]);
     }
+
+    public function user() {
+        return view('user');
+    }
 }

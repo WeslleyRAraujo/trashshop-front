@@ -1,7 +1,7 @@
 {% extends 'master.twig' %}
 
 {% block scripts %}
-<script src="/assets/js/app/login.js">
+<script src="/assets/js/app/login.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -25,7 +25,6 @@
               <div class="d-grid">
                 <button class="btn btn-dark fw-bold" type="submit" id="login-button">Entrar</button>
               </div>
-              <small class="text-danger mb-3">{{session.error_login}}</small>
             </form>
             <br>
             <div class="text-center">
@@ -36,8 +35,16 @@
             </div>
           </div>
         </div>
+        <div id="alert-error">
+        
+        </div>
+        {% if session.error_login != ''%}
+        <div class="alert alert-danger" role="alert">
+          {{session.error_login}}
+        </div>
+        {% endif %}
+
       </div>
     </div>
   </div>
-  <script src="/assets/js/app/login.js"></script>
 {% endblock %}

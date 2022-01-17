@@ -4,6 +4,9 @@
 include_once "./bootstrap.php";
 
 use Afterimage\Router;
+use App\Classes\Session;
+
+Session::checkLifeTime();
 
 $route = new Router();
 
@@ -17,6 +20,8 @@ $route->post('/login/auth', 'App\Controller\LoginController:auth');
 
 $route->get('/profile', 'App\Controller\UserController:profile');
 
-$route->get('/test', 'App\Controller\ShopController:test');
+$route->get('/user', 'App\Controller\UserController:user');
+
+$route->get('/sessiontime', 'App\Controller\LoginController:sessionTime');
 
 Afterimage\Session::unset('error_login');

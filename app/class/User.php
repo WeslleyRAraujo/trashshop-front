@@ -28,4 +28,9 @@ class User
 
         return json_decode($response, true);
     }
+
+    public function userDetail($id)
+    {
+        
+    }
 }

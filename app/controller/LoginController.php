@@ -55,8 +55,12 @@ class LoginController
         Session::set([
             'session_id' => $jwt_return['sub'],
             'session_token' =>  $result['data']['token'],
-            'session_logged' => true
+            'session_logged' => true,
+            'session_start_login' => time()
         ]);
+
+        \App\Classes\Session::setLifeTime(600);
+
         header('location:/'); exit();
     }
 
@@ -64,5 +68,22 @@ class LoginController
     {
         Session::kill();
         header("location: /login"); exit();
+    }
+
+    /**
+     * echo the session time left in json format
+     * 
+     * @return void
+     */
+    public function sessionTime()
+    {
+        if(isset($_SESSION['session_logout_time'])) {
+            header('Content-Type: application/json');
+            echo json_encode(
+                [date('i:s', $_SESSION['session_logout_time'] - time())]
+            );
+        } else {
+            echo json_encode(['']);
+        }
     }
 }

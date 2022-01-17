@@ -21,7 +21,8 @@ class Product
         curl_close($curl);
 
         $result = json_decode($response, true);
-        return $result['products'];
+        
+        return $result['products'] ?? $result;
     }
 
     public function detail($code)

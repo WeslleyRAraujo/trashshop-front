@@ -12,7 +12,7 @@
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Trash Shop</a>
-
+            <a class="text-info text-decoration-none" id="timer" title="tempo restante da sessão"></a>
             {% if session.session_logged == true %} 
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,6 +42,7 @@
         {% block content %}{% endblock %}
     </div>
     <script src="/assets/js/bootstrap/bootstrap.js"></script>
+    <script src="/assets/js/app/timer.js"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>

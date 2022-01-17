@@ -10,7 +10,10 @@
 
 {% if notFound == false %}
     <div class="card">
-        <h5 class="card-header">{{product.name}}</h5>
+        <div class="card-header">
+            <h5 >{{product.name}}</h5>
+            <a href="/user?=4"><small>Vendido por {{product.user.name}}</small></a>
+        </div>
         <div class="card-body">
             <p class="card-text">Uma descrição sobre o produto...</p>
             <br>

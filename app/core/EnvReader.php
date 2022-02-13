@@ -21,7 +21,6 @@ class EnvReader
         if(!file_exists(self::ENV_PATH)){
             throw new \InvalidArgumentException(sprintf('o arquivo %s não existe', self::ENV_PATH));
         }
-        $this->path = self::ENV_PATH;
     }
 
     /**
@@ -32,11 +31,11 @@ class EnvReader
      */
     public function load()
     {
-        if(!is_readable($this->path)) {
-            throw new \RuntimeException(sprintf('o arquivo %s não é legível', $this->path));
+        if(!is_readable(self::ENV_PATH)) {
+            throw new \RuntimeException(sprintf('o arquivo %s não é legível', self::ENV_PATH));
         }
 
-        $lines = file($this->path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $lines = file(self::ENV_PATH, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
         foreach($lines as $line) {
             if(strpos(trim($line), '#') === 0) {

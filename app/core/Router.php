@@ -10,8 +10,8 @@ use Afterimage\Http;
 
 class Router
 {
-    private $getRoutes = [];
-    private $postRoutes = [];
+    private $getRoutes = []; // get routes
+    private $postRoutes = []; // post routes
 
     public function __destruct()
     {
@@ -23,7 +23,7 @@ class Router
      * 
      * @param string $route, route to be redirect
      */
-    public function feedGetRoute(string $route)
+    private function feedGetRoute(string $route)
     {
         array_push($this->getRoutes, $route);
     }
@@ -33,7 +33,7 @@ class Router
      * 
      * @param string $route, route to be redirect
      */
-    public function feedPostRoute(string $route)
+    private function feedPostRoute(string $route)
     {
         array_push($this->postRoutes, $route);
     }
@@ -49,7 +49,7 @@ class Router
      */
     public function get(string $route, string $controller)
     {
-        if(Http::requestType() === 'GET') {
+        if(strval($_SERVER['REQUEST_METHOD']) === 'GET') {
 
             // case the first char is '/' will be removed
             if(substr($route, 0, 1) === "/" && strlen($route) > 1) {
@@ -61,7 +61,6 @@ class Router
             $method = $controller[1];
 
             $this->feedGetRoute($route);
-
             $this->executeRoute($route, $class, $method);
         }
         return $this;
@@ -78,7 +77,7 @@ class Router
      */
     public function post(string $route, string $controller)
     {
-        if(Http::requestType() === 'POST') {
+        if(strval($_SERVER['REQUEST_METHOD']) === 'POST') {
 
             // case the first char is '/' will be removed
             if(substr($route, 0, 1) === "/" && strlen($route) > 1) {
@@ -90,7 +89,6 @@ class Router
             $method = $controller[1];
 
             $this->feedPostRoute($route);
-
             $this->executeRoute($route, $class, $method);
         }
         return $this;
@@ -167,6 +165,7 @@ class Router
      */
     private function hasRoute()
     {
+        
         $url = str_replace(".php", "", $_REQUEST['url'] ?? '/');
 
         if(!in_array(strval($url), $this->getRoutes) && !in_array(strval($url), $this->postRoutes)) {

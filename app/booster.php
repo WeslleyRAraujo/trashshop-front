@@ -1,5 +1,7 @@
 <?php
 
+ini_set('display_errors', 1);
+
 require_once __DIR__ . "/core/EnvReader.php";
 require_once __DIR__ . "/core/functions/common.php";
 
@@ -33,6 +35,6 @@ if($_ENV['DISPLAY_ERRORS'] == 'yes') {
     ini_set('display_errors', 0);
 }
 
-(new Afterimage\Session);
-
-?>
+if(session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}

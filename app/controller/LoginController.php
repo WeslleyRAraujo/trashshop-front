@@ -3,7 +3,7 @@
 namespace App\Controller;
 use App\Classes\Log;
 use App\Classes\User;
-use Afterimage\Session;
+use App\Classes\Session;
 
 class LoginController
 {

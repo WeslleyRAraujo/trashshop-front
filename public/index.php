@@ -24,4 +24,4 @@ $route->get('/user', 'App\Controller\UserController:user');
 
 $route->get('/sessiontime', 'App\Controller\LoginController:sessionTime');
 
-Afterimage\Session::unset('error_login');
+Session::unset('error_login');
